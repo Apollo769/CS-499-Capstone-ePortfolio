@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">ProjectAIM</string>
+
+    <string name="app_title">Welcome to A.I.M!</string>
+    <string name="welcome_tagline">One-stop solution for\nAgile Inventory Management</string>
+    <string name="screenTitleNotifications">Notifications</string>
+    <string name="screen_title">Inventory</string>
+
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="hint_username">Enter username</string>
+    <string name="hint_password">Enter password</string>
+    <string name="hint_add_quantity">Quantity</string>
+
+    <string name="hint_item_name">Item name</string>
+    <string name="hint_item_qty">Quantity</string>
+    <string name="hint_item_desc">Description (optional)</string>
+
+    <string name="item">Item</string>
+    <string name="quantity">Qty</string>
+    <string name="actions">Actions</string>
+
+    <string name="add_item">Add Item</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="require">Required to send out-of-stock alerts</string>
+    <string name="sms_permission">SMS Permission</string>
+    <string name="permission_y_n">DENIED</string>
+    <string name="enableNotif">Enable SMS Notifications</string>
+    <string name="recent_alerts">Recent Alerts</string>
+    <string name="clear_list">Clear List</string>
+    <string name="desc_notifications">Notification</string>
+    <string name="desc_delete">Delete item</string>
+
+    <string name="permission_granted">Granted</string>
+    <string name="permission_denied">Denied</string>
+
+    <string name="back_to_inventory">Back to Inventory</string>
+</resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:theme="@style/Theme.ProjectAIM"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardForm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_item_name"
+                android:autofillHints="username"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="420dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingVertical="12dp"
+                    android:inputType="textCapWords"
+                    android:hint="@string/hint_item_name"
+                    android:fontFamily="monospace"
+                    android:background="@color/white"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilQty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="none"
+                android:hint="@string/hint_add_quantity"
+                app:layout_constraintTop_toBottomOf="@id/tilName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="420dp"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputQty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingVertical="12dp"
+                    android:inputType="number"
+                    android:hint="@string/hint_add_quantity"
+                    android:fontFamily="monospace"
+                    android:background="@color/white"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="none"
+                android:hint="@string/hint_item_desc"
+                app:layout_constraintTop_toBottomOf="@id/tilQty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="420dp"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingVertical="12dp"
+                    android:inputType="textCapSentences"
+                    android:hint="@string/hint_item_desc"
+                    android:fontFamily="monospace"
+                    android:background="@color/white"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/actionsRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="18dp"
+                app:layout_constraintTop_toBottomOf="@id/tilDesc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="420dp">
+
+                <Button
+                    android:id="@+id/buttonCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:minWidth="120dp"
+                    android:maxWidth="220dp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/black"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:background="@drawable/cancel"
+                    app:backgroundTint="@null" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/buttonSaveItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:minWidth="120dp"
+                    android:maxWidth="220dp"
+                    android:text="@string/add_item"
+                    android:textColor="@color/black"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:background="@drawable/rounded_corner"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
