@@ -1,4 +1,4 @@
-package com.example.ProjectAIM;
+package com.example.ProjectAIM.model;
 
 // Represents a single item in the inventory list
 public class Item {

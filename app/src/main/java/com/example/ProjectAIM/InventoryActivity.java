@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ProjectAIM.model.Item;
+import com.example.ProjectAIM.viewmodel.InventoryViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -21,9 +23,9 @@ import java.util.ArrayList;
 // Main screen for viewing, adding, and editing inventory items
 public class InventoryActivity extends AppCompatActivity {
 
-    private ArrayList<Item> itemList;       // holds all items to show in list
-    private InventoryAdapter adapter;       // connects data to recycler view
-    private DatabaseHelper dbHelper;        // manages local database actions
+    private ArrayList<Item> itemList;                  // holds all items to show in list
+    private InventoryAdapter adapter;                  // connects data to recycler view
+    private InventoryViewModel inventoryViewModel;     // manages inventory logic and data updates
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +37,13 @@ public class InventoryActivity extends AppCompatActivity {
         FloatingActionButton fabAddItem = findViewById(R.id.fabAddItem);
         ImageButton fabNotifications = findViewById(R.id.fabNotifications);
 
-        // create database and load items
-        dbHelper = new DatabaseHelper(this);
+        // create ViewModel and load items
+        inventoryViewModel = new InventoryViewModel(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        itemList = dbHelper.getAllItems();
+        itemList = inventoryViewModel.getItemList();
 
         // set adapter to display items in the recycler
-        adapter = new InventoryAdapter(itemList, dbHelper);
+        adapter = new InventoryAdapter(itemList, inventoryViewModel);
         recyclerView.setAdapter(adapter);
 
         // add new items using a pop-up dialog
@@ -72,7 +74,7 @@ public class InventoryActivity extends AppCompatActivity {
         // close without saving
         buttonCancel.setOnClickListener(v -> dialog.dismiss());
 
-        // save to database when user confirms
+        // save new item when user confirms
         buttonSave.setOnClickListener(v -> {
             String name = inputName.getText().toString().trim();
             String qtyStr = inputQty.getText().toString().trim();
@@ -84,13 +86,13 @@ public class InventoryActivity extends AppCompatActivity {
                 return;
             }
 
-            // convert quantity and insert into database
+            // convert quantity and add item through ViewModel
             int qty = Integer.parseInt(qtyStr);
-            dbHelper.addItem(name, qty, desc);
+            inventoryViewModel.addItem(name, qty, desc);
 
             // refresh recycler view
             itemList.clear();
-            itemList.addAll(dbHelper.getAllItems());
+            itemList.addAll(inventoryViewModel.getItemList());
             adapter.notifyItemInserted(itemList.size() - 1);
 
             dialog.dismiss();

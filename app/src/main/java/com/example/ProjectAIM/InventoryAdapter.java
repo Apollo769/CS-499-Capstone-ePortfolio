@@ -11,17 +11,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ProjectAIM.model.Item;
+import com.example.ProjectAIM.viewmodel.InventoryViewModel;
+
 import java.util.ArrayList;
 
 // Adapter that connects the item list to the RecyclerView
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.ViewHolder> {
 
-    private final ArrayList<Item> items;   // all items shown in list
-    private final DatabaseHelper dbHelper; // used for saving changes or deleting
+    private final ArrayList<Item> items;                       // all items shown in list
+    private final InventoryViewModel inventoryViewModel;       // manages item updates and deletes
 
-    public InventoryAdapter(ArrayList<Item> items, DatabaseHelper dbHelper) {
+    public InventoryAdapter(ArrayList<Item> items, InventoryViewModel inventoryViewModel) {
         this.items = items;
-        this.dbHelper = dbHelper;
+        this.inventoryViewModel = inventoryViewModel;
     }
 
     // creates a single row for the list
@@ -40,14 +43,14 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         holder.textItemName.setText(item.getName());
         holder.editItemQty.setText(String.valueOf(item.getQuantity()));
 
-        // updates database when quantity field loses focus
+        // updates item quantity when quantity field loses focus
         holder.editItemQty.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 String s = holder.editItemQty.getText().toString().trim();
                 if (!s.isEmpty()) {
                     int newQty = Integer.parseInt(s);
                     item.setQuantity(newQty);
-                    dbHelper.updateQuantity(item.getId(), newQty);
+                    inventoryViewModel.updateQuantity(item.getId(), newQty);
                     Toast.makeText(v.getContext(), "Quantity updated", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -58,7 +61,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             int pos = holder.getBindingAdapterPosition();
             if (pos == RecyclerView.NO_POSITION) return;
             Item toRemove = items.get(pos);
-            dbHelper.deleteItem(toRemove.getId());
+            inventoryViewModel.deleteItem(toRemove.getId());
             items.remove(pos);
             notifyItemRemoved(pos);
             Toast.makeText(v.getContext(), "Item deleted", Toast.LENGTH_SHORT).show();
